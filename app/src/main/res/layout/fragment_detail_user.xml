@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.fragment.DetailUserFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/image_detail_circle_width"
+            android:layout_height="@dimen/image_detail_circle_width"
+            android:layout_marginStart="@dimen/padding_root_view"
+            android:layout_marginTop="@dimen/padding_root_view"
+            android:padding="@dimen/image_circle_stroke_width"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.GithubApp.RoundedImageView"
+            app:strokeColor="@color/goodGray"
+            app:strokeWidth="@dimen/image_circle_stroke_width"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_margin_image"
+            android:layout_marginEnd="@dimen/padding_root_view"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintBottom_toTopOf="@id/tv_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_avatar"
+            app:layout_constraintTop_toTopOf="@id/iv_avatar"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Jake Wharton" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_root_view"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textColor="?android:textColorSecondary"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            app:layout_constraintEnd_toEndOf="@id/tv_name"
+            app:layout_constraintStart_toStartOf="@id/tv_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="JakeWharton" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_company"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_root_view"
+            android:layout_marginEnd="@dimen/padding_root_view"
+            android:drawablePadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:textColorPrimary"
+            app:drawableStartCompat="@drawable/ic_business"
+            app:drawableTint="?android:textColorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+            tools:text="Google, Inc." />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:textColorPrimary"
+            app:drawableStartCompat="@drawable/ic_location"
+            app:drawableTint="?android:textColorPrimary"
+            app:layout_constraintEnd_toEndOf="@id/tv_company"
+            app:layout_constraintStart_toStartOf="@id/tv_company"
+            app:layout_constraintTop_toBottomOf="@id/tv_company"
+            tools:text="Pittsburgh, PA, USA" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_repository"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:textColorPrimary"
+            app:drawableStartCompat="@drawable/ic_repository"
+            app:drawableTint="?android:textColorPrimary"
+            app:layout_constraintEnd_toEndOf="@id/tv_location"
+            app:layout_constraintStart_toStartOf="@id/tv_location"
+            app:layout_constraintTop_toBottomOf="@id/tv_location"
+            tools:text="30 repository" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:textColorPrimary"
+            app:drawableStartCompat="@drawable/ic_person"
+            app:drawableTint="?android:textColorPrimary"
+            app:layout_constraintEnd_toStartOf="@id/tv_title_followers"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/tv_repository"
+            app:layout_constraintTop_toBottomOf="@id/tv_repository"
+            tools:text="63.4k" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title_followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@string/followers"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_followers"
+            app:layout_constraintEnd_toStartOf="@id/tv_following"
+            app:layout_constraintStart_toEndOf="@id/tv_followers" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_following"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="2dp"
+            android:drawablePadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:textColorPrimary"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_followers"
+            app:layout_constraintStart_toEndOf="@id/tv_title_followers"
+            tools:text="· 9" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title_following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@string/followers"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_followers"
+            app:layout_constraintStart_toEndOf="@id/tv_following"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

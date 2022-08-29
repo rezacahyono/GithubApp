@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GithubApp</string>
+
+    <string name="search_hint">Search user…</string>
+    <string name="github">Github</string>
+    <string name="detail">Detail</string>
+    <string name="followers">followers</string>
+    <string name="followings">· %s</string>
+    <string name="repository">%d repository</string>
 </resources>
