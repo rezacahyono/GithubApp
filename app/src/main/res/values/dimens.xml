@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main layout -->
+    <dimen name="title_margin_toolbar">24dp</dimen>
+    <dimen name="padding_root_view">20dp</dimen>
+
+    <!-- Home layout-->
+    <dimen name="search_field_corner">8dp</dimen>
+
+    <!-- Item row user -->
+    <dimen name="image_circle_width">66dp</dimen>
+    <dimen name="image_circle_stroke_width">1dp</dimen>
+    <dimen name="card_margin_vertical">8dp</dimen>
+    <dimen name="divider_height">1.5dp</dimen>
+    <dimen name="divider_margin">8dp</dimen>
+
+    <!-- Detail layout -->
+    <dimen name="image_detail_circle_width">81dp</dimen>
+    <dimen name="text_margin_image">16dp</dimen>
+
+</resources>
