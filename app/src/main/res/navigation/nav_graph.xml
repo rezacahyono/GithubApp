@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.rchyn.githubapp.ui.fragment.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_detail"
+            app:destination="@id/nav_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_detail"
+        android:name="com.rchyn.githubapp.ui.fragment.detail.DetailUserFragment"
+        android:label="fragment_detail_user"
+        tools:layout="@layout/fragment_detail_user">
+        <argument
+            android:name="user"
+            app:argType="com.rchyn.githubapp.model.User" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_nav_followers_to_nav_detail"
+        app:destination="@id/nav_detail" />
+
+</navigation>

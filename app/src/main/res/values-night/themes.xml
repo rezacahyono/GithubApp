@@ -1,5 +1,4 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="Theme.GithubApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:colorBackground">@color/colorBackgroundInverse</item>
@@ -12,8 +11,8 @@
         <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryInverse</item>
         <item name="colorSurface">@color/colorSurfaceInverse</item>
-
         <item name="toolbarStyle">@style/Widget.GithubApp.Toolbar</item>
+        <item name="appBarLayoutStyle">@style/Widget.GithubApp.Appbar</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.SplashScreen">
@@ -26,16 +25,44 @@
     <style name="Widget.GithubApp.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="materialThemeOverlay">@style/ThemeOverlay.GithubApp.Toolbar</item>
         <item name="titleTextAppearance">@style/TextAppearance.MaterialComponents.Headline6</item>
-        <item name="subtitleTextAppearance">@style/TextAppearance.MaterialComponents.Subtitle1</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
         <item name="titleMarginStart">@dimen/title_margin_toolbar</item>
         <item name="android:elevation">0dp</item>
         <item name="navigationIconTint">@color/whiteGithub</item>
+    </style>
+
+    <style name="Widget.GithubApp.Appbar" parent="Widget.MaterialComponents.AppBarLayout.Primary">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.GithubApp.Appbar</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Widget.GithubApp.Toolbar.Search" parent="Widget.GithubApp.Toolbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.GithubApp.Toolbar.Search</item>
+    </style>
+
+    <style name="Widget.GithubApp.Appbar.Search" parent="Widget.GithubApp.Appbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.GithubApp.Appbar.Search</item>
     </style>
 
     <style name="ThemeOverlay.GithubApp.Toolbar" parent="">
         <item name="colorPrimary">@color/colorSurfaceInverse</item>
         <item name="colorPrimaryVariant">@color/whiteAlpha80</item>
         <item name="colorOnPrimary">@color/whiteGithub</item>
+    </style>
+
+    <style name="ThemeOverlay.GithubApp.Appbar" parent="">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryVariant">@color/whiteAlpha80</item>
+        <item name="colorOnPrimary">@color/whiteGithub</item>
+    </style>
+
+    <style name="ThemeOverlay.GithubApp.Toolbar.Search" parent="ThemeOverlay.GithubApp.Toolbar">
+        <item name="colorPrimary">@android:color/transparent</item>
+    </style>
+
+    <style name="ThemeOverlay.GithubApp.Appbar.Search" parent="ThemeOverlay.GithubApp.Appbar">
+        <item name="colorPrimary">@color/colorSurfaceInverse</item>
     </style>
 
     <style name="Widget.GithubApp.SearchView" parent="Widget.AppCompat.SearchView">
@@ -49,5 +76,16 @@
         <item name="dividerColor">@color/whiteAlpha16</item>
         <item name="android:layout_height">@dimen/divider_height</item>
         <item name="android:layout_marginTop">@dimen/divider_margin</item>
+    </style>
+
+    <style name="Widget.GithubApp.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">@color/blackGithub</item>
+        <item name="strokeColor">@color/whiteAlpha16</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="icon">@drawable/ic_external_link</item>
+        <item name="iconTint">?android:textColorPrimary</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.MaterialComponents.SmallComponent</item>
     </style>
 </resources>

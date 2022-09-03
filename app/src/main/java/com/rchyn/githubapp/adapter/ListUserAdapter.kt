@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.rchyn.githubapp.databinding.ItemRowUserBinding
 import com.rchyn.githubapp.model.User
 
@@ -19,30 +20,17 @@ class ListUserAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         private val root = binding.root
         private val ivAvatar = binding.ivAvatar
-        private val tvName = binding.tvName
         private val tvUsername = binding.tvUsername
-        private val tvLocation = binding.tvLocation
+        private val tvType = binding.tvType
 
         fun bind(user: User) {
-            val imageRes = ctx.resources.getIdentifier(user.avatar, null, ctx.packageName)
-            ivAvatar.setImageResource(imageRes)
-            tvName.text = user.name
-            tvUsername.text = user.username
-            tvLocation.text = user.location
+            ivAvatar.load(user.avatar)
+            tvUsername.text = user.login
+            tvType.text = user.type
 
             root.setOnClickListener {
                 onClickItem(user)
             }
-        }
-    }
-
-    private companion object DiffCallback : DiffUtil.ItemCallback<User>() {
-        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem.name == newItem.name
         }
     }
 
@@ -55,5 +43,12 @@ class ListUserAdapter(
     override fun onBindViewHolder(holder: ListUserViewHolder, position: Int) {
         val data = getItem(position)
         holder.bind(data)
+    }
+
+    private companion object DiffCallback : DiffUtil.ItemCallback<User>() {
+        override fun areItemsTheSame(oldItem: User, newItem: User) = oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: User, newItem: User) =
+            oldItem.id == newItem.id
     }
 }
