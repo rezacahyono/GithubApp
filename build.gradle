@@ -6,16 +6,23 @@ buildscript {
         material_version = "1.6.1"
         cosntraint_version = "2.1.4"
         splash_version = "1.0.0"
+        retrofit_version = "2.9.0"
+        okhttp3_version = "5.0.0-alpha.2"
+        coil_version ="2.2.0"
+        lifecycle_version = "2.6.0-alpha01"
+        nav_version = "2.5.1"
+        fragment_version ="1.5.2"
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-serialization:1.7.10"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 plugins {
     id 'com.android.application' version '7.2.2' apply false
     id 'com.android.library' version '7.2.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+    id 'com.google.secrets_gradle_plugin' version '0.4'
 }
 
 task clean(type: Delete) {

@@ -1,37 +1,25 @@
 package com.rchyn.githubapp.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.rchyn.githubapp.R
 import com.rchyn.githubapp.databinding.ActivityMainBinding
-import com.rchyn.githubapp.ui.fragment.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        val toolbar = binding.toolbarMain as Toolbar
-        setSupportActionBar(toolbar)
         setContentView(binding.root)
 
-        val fragmentManager = supportFragmentManager
-        val homeFragment = HomeFragment()
-        val fragment = fragmentManager.findFragmentByTag(HomeFragment::class.java.simpleName)
-        if (fragment !is HomeFragment) {
-            fragmentManager
-                .beginTransaction()
-                .add(
-                    R.id.fragment_container_view,
-                    homeFragment,
-                    HomeFragment::class.java.simpleName
-                )
-                .commit()
-        }
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment
+        navController = navHostFragment.navController
     }
 }

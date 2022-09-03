@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/padding_root_view"
     android:layout_marginVertical="@dimen/card_margin_vertical">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -12,6 +13,8 @@
         android:layout_height="@dimen/image_circle_width"
         android:padding="@dimen/image_circle_stroke_width"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/materialDivider"
+        app:layout_constraintEnd_toStartOf="@id/tv_username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.GithubApp.RoundedImageView"
@@ -20,42 +23,34 @@
         tools:src="@tools:sample/backgrounds/scenic" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:maxLines="2"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:textColor="@color/blue"
-        app:layout_constraintBottom_toTopOf="@id/tv_username"
+        app:layout_constraintBottom_toTopOf="@+id/tv_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_avatar"
-        app:layout_constraintTop_toTopOf="@id/iv_avatar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Jake Wharton" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_username"
+        android:id="@+id/tv_type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-        app:layout_constraintBottom_toTopOf="@id/tv_location"
-        app:layout_constraintEnd_toEndOf="@id/tv_name"
-        app:layout_constraintStart_toStartOf="@id/tv_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"
-        tools:text="JakeWharton" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_location"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+        app:layout_constraintBottom_toTopOf="@+id/materialDivider"
         app:layout_constraintEnd_toEndOf="@id/tv_username"
         app:layout_constraintStart_toStartOf="@id/tv_username"
-        app:layout_constraintTop_toBottomOf="@id/tv_username"
-        tools:text="JakeWharton" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_username"
+        tools:text="User" />
+
 
     <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider"
         style="@style/Widget.GithubApp.Divider"
         android:layout_width="match_parent"
         app:layout_constraintTop_toBottomOf="@id/iv_avatar" />

@@ -1,10 +1,21 @@
 <resources>
     <string name="app_name">GithubApp</string>
-
     <string name="search_hint">Search user…</string>
     <string name="github">Github</string>
     <string name="detail">Detail</string>
     <string name="followers">followers</string>
+    <string name="following">following</string>
     <string name="followings">· %s</string>
     <string name="repository">%d repository</string>
+    <string name="website_page">Website page</string>
+    <string name="tab_follower">Tab follower</string>
+    <string name="image_placeholder">Image Placeholder</string>
+    <string name="text_placeholder_waiting">Waiting to search!</string>
+    <string name="text_message_not_found">Oops,User not found</string>
+    <string name="text_message_error_from_server">Sorry😔, there was an error from the server</string>
+    <string name="text_message_error_internet_connection">Can\'t reach the server, check your internet connection!</string>
+    <string-array name="tab_title_followers">
+        <item>Followers</item>
+        <item>Following</item>
+    </string-array>
 </resources>
