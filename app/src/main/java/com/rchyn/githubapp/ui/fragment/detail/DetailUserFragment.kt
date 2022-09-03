@@ -106,7 +106,9 @@ class DetailUserFragment : Fragment() {
 
     private fun setupDisplayDetail(user: User) {
         binding.apply {
-            ivAvatar.load(user.avatar)
+            ivAvatar.load(user.avatar) {
+                crossfade(true)
+            }
             tvName.text = user.name
             tvUsername.text = user.login
             tvCompany.text = user.company.ifBlank {

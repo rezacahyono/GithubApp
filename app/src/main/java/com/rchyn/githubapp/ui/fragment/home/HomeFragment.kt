@@ -1,7 +1,6 @@
 package com.rchyn.githubapp.ui.fragment.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +30,13 @@ class HomeFragment : Fragment() {
         )
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        listUserAdapter = ListUserAdapter { user ->
+            navigateToDetail(user)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,28 +47,24 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerUser.layoutManager = linearLayoutManager
         homeViewModel.listUser.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Resource.Success -> {
-                    setupRetrieveRecyclerUser(result.data)
                     binding.apply {
-                        recyclerUser.show()
                         loadingBar.hide()
+                        recyclerUser.show()
                         ivPlaceholder.hide()
                         tvPlaceholder.hide()
                     }
-                    Log.d("TAG", "onViewCreated: $result")
+                    listUserAdapter.submitList(result.data)
                 }
                 is Resource.Loading -> {
                     binding.apply {
-                        recyclerUser.hide()
                         loadingBar.show()
+                        recyclerUser.hide()
                         ivPlaceholder.hide()
                         tvPlaceholder.hide()
                     }
-                    Log.d("TAG", "onViewCreated: $result")
                 }
                 is Resource.Error -> {
                     binding.apply {
@@ -73,24 +75,26 @@ class HomeFragment : Fragment() {
                             show()
                         }
                         tvPlaceholder.apply {
-                            text = result.message ?: ""
+                            text = result.message?.let {
+                                getString(it)
+                            }
                             show()
                         }
                     }
-                    Log.d("TAG", "onViewCreated: $result")
                 }
             }
         }
+        setupRecyclerUser()
+
         setupSearchView()
     }
 
-    private fun setupRetrieveRecyclerUser(users: List<User>?) {
-        listUserAdapter = ListUserAdapter { user ->
-            navigateToDetail(user)
-        }.apply {
-            submitList(users)
+    private fun setupRecyclerUser() {
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerUser.apply {
+            layoutManager = linearLayoutManager
+            adapter = listUserAdapter
         }
-        binding.recyclerUser.adapter = listUserAdapter
     }
 
     private fun setupSearchView() {

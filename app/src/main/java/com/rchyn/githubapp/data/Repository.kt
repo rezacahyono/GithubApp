@@ -24,26 +24,24 @@ class Repository private constructor(
             } else {
                 emit(
                     Resource.Error(
-                        message = Resources.getSystem().getString(R.string.text_message_not_found)
+                        message = R.string.text_message_not_found
                     )
                 )
             }
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_from_server)
+                    message = R.string.text_message_error_from_server
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_internet_connection)
+                    message = R.string.text_message_error_internet_connection
                 )
             )
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     fun getUserDetail(username: String): Flow<Resource<User>> = flow {
         emit(Resource.Loading)
@@ -53,15 +51,13 @@ class Repository private constructor(
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_from_server)
+                    message = R.string.text_message_error_from_server
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_internet_connection)
+                    message = R.string.text_message_error_internet_connection
                 )
             )
         }
@@ -74,24 +70,26 @@ class Repository private constructor(
             if (data.isNotEmpty()) {
                 emit(Resource.Success(data))
             } else {
-                emit(Resource.Error(message = "Oops, Not found"))
+                emit(
+                    Resource.Error(
+                        message = R.string.text_message_not_found
+                    )
+                )
             }
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_from_server)
+                    message = R.string.text_message_error_from_server
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_internet_connection)
+                    message = R.string.text_message_error_internet_connection
                 )
             )
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     fun getUserFollowing(username: String): Flow<Resource<List<User>>> = flow {
         emit(Resource.Loading)
@@ -100,24 +98,26 @@ class Repository private constructor(
             if (data.isNotEmpty()) {
                 emit(Resource.Success(data))
             } else {
-                emit(Resource.Error(message = "Oops, Not found"))
+                emit(
+                    Resource.Error(
+                        message = R.string.text_message_not_found
+                    )
+                )
             }
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_from_server)
+                    message = R.string.text_message_error_from_server
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_internet_connection)
+                    message = R.string.text_message_error_internet_connection
                 )
             )
         }
-    }
+    }.flowOn(Dispatchers.IO)
 
     companion object {
         @Volatile
