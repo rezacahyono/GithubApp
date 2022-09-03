@@ -1,4 +1,4 @@
-package com.rchyn.githubapp.ui.fragment.follower
+package com.rchyn.githubapp.ui.fragments.follower
 
 import android.os.Bundle
 import android.view.LayoutInflater

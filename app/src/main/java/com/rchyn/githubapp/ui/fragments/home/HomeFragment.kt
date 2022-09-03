@@ -1,4 +1,4 @@
-package com.rchyn.githubapp.ui.fragment.home
+package com.rchyn.githubapp.ui.fragments.home
 
 import android.os.Bundle
 import android.util.Log
@@ -41,28 +41,30 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerUser.layoutManager = linearLayoutManager
+
+        listUserAdapter = ListUserAdapter { user ->
+            navigateToDetail(user)
+        }
+
         homeViewModel.listUser.observe(viewLifecycleOwner) { result ->
+            Log.d("TAG", "onViewCreated: $result")
             when (result) {
                 is Resource.Success -> {
-                    setupRetrieveRecyclerUser(result.data)
                     binding.apply {
-                        recyclerUser.show()
                         loadingBar.hide()
+                        recyclerUser.show()
                         ivPlaceholder.hide()
                         tvPlaceholder.hide()
                     }
-                    Log.d("TAG", "onViewCreated: $result")
+                    listUserAdapter.submitList(result.data)
                 }
                 is Resource.Loading -> {
                     binding.apply {
-                        recyclerUser.hide()
                         loadingBar.show()
+                        recyclerUser.hide()
                         ivPlaceholder.hide()
                         tvPlaceholder.hide()
                     }
-                    Log.d("TAG", "onViewCreated: $result")
                 }
                 is Resource.Error -> {
                     binding.apply {
@@ -73,24 +75,29 @@ class HomeFragment : Fragment() {
                             show()
                         }
                         tvPlaceholder.apply {
-                            text = result.message ?: ""
+                            text = result.message?.let {
+                                getString(it)
+                            }
                             show()
                         }
                     }
-                    Log.d("TAG", "onViewCreated: $result")
                 }
             }
         }
+
+        setupRecyclerUser()
+
         setupSearchView()
+
+        setupMenu()
     }
 
-    private fun setupRetrieveRecyclerUser(users: List<User>?) {
-        listUserAdapter = ListUserAdapter { user ->
-            navigateToDetail(user)
-        }.apply {
-            submitList(users)
+    private fun setupRecyclerUser() {
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerUser.apply {
+            layoutManager = linearLayoutManager
+            adapter = listUserAdapter
         }
-        binding.recyclerUser.adapter = listUserAdapter
     }
 
     private fun setupSearchView() {
@@ -108,6 +115,18 @@ class HomeFragment : Fragment() {
                 return false
             }
         })
+    }
+
+    private fun setupMenu() {
+        binding.layoutToolbar.toolbarMain.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.nav_settings -> {
+                    findNavController().navigate(R.id.nav_settings)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun navigateToDetail(user: User) {

@@ -1,4 +1,4 @@
-package com.rchyn.githubapp.ui.fragment.detail
+package com.rchyn.githubapp.ui.fragments.detail
 
 import android.content.Intent
 import android.net.Uri
@@ -19,8 +19,8 @@ import com.rchyn.githubapp.R
 import com.rchyn.githubapp.databinding.FragmentDetailUserBinding
 import com.rchyn.githubapp.model.User
 import com.rchyn.githubapp.ui.ViewModelFactory
-import com.rchyn.githubapp.ui.fragment.follower.FollowersSectionPageAdapter
-import com.rchyn.githubapp.ui.fragment.follower.FollowersViewModel
+import com.rchyn.githubapp.ui.fragments.follower.FollowersSectionPageAdapter
+import com.rchyn.githubapp.ui.fragments.follower.FollowersViewModel
 import com.rchyn.githubapp.util.*
 
 
@@ -102,11 +102,15 @@ class DetailUserFragment : Fragment() {
                 binding.loadingBar.hide()
             }
         }
+
+        setupMenu()
     }
 
     private fun setupDisplayDetail(user: User) {
         binding.apply {
-            ivAvatar.load(user.avatar)
+            ivAvatar.load(user.avatar) {
+                crossfade(true)
+            }
             tvName.text = user.name
             tvUsername.text = user.login
             tvCompany.text = user.company.ifBlank {
@@ -143,6 +147,18 @@ class DetailUserFragment : Fragment() {
             val intentGithubPage = Intent(Intent.ACTION_VIEW, Uri.parse(user.url))
             btnSeeLink.setOnClickListener {
                 startActivity(intentGithubPage)
+            }
+        }
+    }
+
+    private fun setupMenu() {
+        binding.toolbarMain.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.nav_settings -> {
+                    findNavController().navigate(R.id.nav_settings)
+                    true
+                }
+                else -> false
             }
         }
     }

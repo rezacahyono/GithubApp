@@ -16,6 +16,7 @@
             android:layout_height="?actionBarSize"
             style="@style/Widget.GithubApp.Toolbar.Search"
             app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/main_menu"
             app:logo="@drawable/ic_logo_github_small"
             app:title="@string/github" />
 

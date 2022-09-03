@@ -1,10 +1,9 @@
 package com.rchyn.githubapp.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.rchyn.githubapp.databinding.ItemRowUserBinding
@@ -12,8 +11,9 @@ import com.rchyn.githubapp.model.User
 
 class ListUserAdapter(
     private val onClickItem: (user: User) -> Unit
-) : ListAdapter<User, ListUserAdapter.ListUserViewHolder>(DiffCallback) {
+) : RecyclerView.Adapter<ListUserAdapter.ListUserViewHolder>() {
     private lateinit var ctx: Context
+    private var listUser: ArrayList<User> = arrayListOf()
 
     inner class ListUserViewHolder(
         binding: ItemRowUserBinding
@@ -24,7 +24,9 @@ class ListUserAdapter(
         private val tvType = binding.tvType
 
         fun bind(user: User) {
-            ivAvatar.load(user.avatar)
+            ivAvatar.load(user.avatar) {
+                crossfade(true)
+            }
             tvUsername.text = user.login
             tvType.text = user.type
 
@@ -34,6 +36,14 @@ class ListUserAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun submitList(users: List<User>?) {
+        if (users.isNullOrEmpty()) return
+        listUser.clear()
+        listUser.addAll(users)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListUserViewHolder {
         ctx = parent.context
         val binding = ItemRowUserBinding.inflate(LayoutInflater.from(ctx), parent, false)
@@ -41,14 +51,10 @@ class ListUserAdapter(
     }
 
     override fun onBindViewHolder(holder: ListUserViewHolder, position: Int) {
-        val data = getItem(position)
+        val data = listUser[position]
         holder.bind(data)
     }
 
-    private companion object DiffCallback : DiffUtil.ItemCallback<User>() {
-        override fun areItemsTheSame(oldItem: User, newItem: User) = oldItem.id == newItem.id
+    override fun getItemCount() = listUser.size
 
-        override fun areContentsTheSame(oldItem: User, newItem: User) =
-            oldItem.id == newItem.id
-    }
 }

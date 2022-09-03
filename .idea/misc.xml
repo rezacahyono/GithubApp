@@ -16,6 +16,7 @@
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable-night/shape_bg_tab.xml" value="0.153" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_arrow_back.xml" value="0.301" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_business.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_color.xml" value="0.4495" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_external_link.xml" value="0.301" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_github.xml" value="0.313" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_link.xml" value="0.301" />
@@ -28,6 +29,7 @@
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_person.xml" value="0.4885" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_placeholder_werror.xml" value="0.4495" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_repository.xml" value="0.4885" />
+        <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_settings.xml" value="0.4495" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_twitter.xml" value="0.301" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/ic_watiting_search.xml" value="0.4495" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/drawable/logo_github.xml" value="0.312" />
@@ -38,9 +40,12 @@
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/layout/fragment_detail_user.xml" value="0.3814814814814815" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/layout/fragment_followers.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/layout/fragment_home.xml" value="0.4506199230440359" />
+        <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/layout/fragment_settings.xml" value="0.4112734864300626" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/layout/item_row_user.xml" value="0.6" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/layout/layout_basic_toolbar.xml" value="0.44976485677640016" />
         <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/layout/layout_search_toolbar.xml" value="0.4722222222222222" />
+        <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/menu/main_menu.xml" value="0.44976485677640016" />
+        <entry key="..\:/Users/rezac/Documents/pemograman/android/GithubApp/app/src/main/res/xml/preferences.xml" value="0.44976485677640016" />
       </map>
     </option>
   </component>

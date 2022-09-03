@@ -18,4 +18,6 @@
     <dimen name="button_margin">16dp</dimen>
 
     <dimen name="search_toolbar_margin">16dp</dimen>
+
+    <dimen name="dialog_corner_rounded">16dp</dimen>
 </resources>

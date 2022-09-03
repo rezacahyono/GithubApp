@@ -1,4 +1,4 @@
-package com.rchyn.githubapp.ui.fragment.follower
+package com.rchyn.githubapp.ui.fragments.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -6,16 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.rchyn.githubapp.data.Repository
 
-class FollowersViewModel(
+class DetailUserViewModel(
     private val repository: Repository
-): ViewModel() {
+) : ViewModel() {
 
     private val _username = MutableLiveData<String>()
-    val userFollowers = Transformations.switchMap(_username) { username ->
-        repository.getUserFollowers(username).asLiveData()
-    }
-    val userFollowing = Transformations.switchMap(_username){ username ->
-        repository.getUserFollowing(username).asLiveData()
+    val userDetail = Transformations.switchMap(_username) { username ->
+        repository.getUserDetail(username).asLiveData()
     }
 
     fun setUsername(username: String) {

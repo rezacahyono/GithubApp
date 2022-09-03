@@ -16,4 +16,5 @@
         <item name="tabSelectedTextColor">?android:textColorPrimary</item>
         <item name="tabTextColor">?android:textColorSecondary</item>
     </style>
+
 </resources>

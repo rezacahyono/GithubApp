@@ -1,4 +1,4 @@
-package com.rchyn.githubapp.ui.fragment.home
+package com.rchyn.githubapp.ui.fragments.home
 
 import androidx.lifecycle.*
 import com.rchyn.githubapp.data.Repository

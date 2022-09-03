@@ -1,4 +1,4 @@
-package com.rchyn.githubapp.ui.fragment.follower
+package com.rchyn.githubapp.ui.fragments.follower
 
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment

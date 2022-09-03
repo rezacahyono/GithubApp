@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.detail.DetailUserFragment">
+    tools:context=".ui.fragments.detail.DetailUserFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -233,6 +233,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 app:layout_collapseMode="pin"
+                app:menu="@menu/main_menu"
                 tools:title="Title" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -262,13 +263,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <ProgressBar
         android:id="@+id/loading_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

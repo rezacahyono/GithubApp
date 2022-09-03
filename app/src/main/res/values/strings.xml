@@ -14,8 +14,10 @@
     <string name="text_message_not_found">Oops,User not found</string>
     <string name="text_message_error_from_server">Sorry😔, there was an error from the server</string>
     <string name="text_message_error_internet_connection">Can\'t reach the server, check your internet connection!</string>
-    <string-array name="tab_title_followers">
-        <item>Followers</item>
-        <item>Following</item>
-    </string-array>
+    <string name="customization">Customization</string>
+    <string name="system_theme">System default</string>
+    <string name="dark_theme">Dark</string>
+    <string name="light_theme">Light</string>
+    <string name="theme_name">App theme</string>
+    <string name="settings">Settings</string>
 </resources>

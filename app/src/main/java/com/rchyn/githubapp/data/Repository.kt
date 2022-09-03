@@ -1,6 +1,5 @@
 package com.rchyn.githubapp.data
 
-import android.content.res.Resources
 import com.rchyn.githubapp.R
 import com.rchyn.githubapp.data.remote.GithubApi
 import com.rchyn.githubapp.model.User
@@ -24,22 +23,20 @@ class Repository private constructor(
             } else {
                 emit(
                     Resource.Error(
-                        message = Resources.getSystem().getString(R.string.text_message_not_found)
+                        message = R.string.text_message_not_found
                     )
                 )
             }
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_from_server)
+                    message = R.string.text_message_error_from_server
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_internet_connection)
+                    message = R.string.text_message_error_internet_connection
                 )
             )
         }
@@ -53,15 +50,13 @@ class Repository private constructor(
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_from_server)
+                    message = R.string.text_message_error_from_server
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_internet_connection)
+                    message = R.string.text_message_error_internet_connection
                 )
             )
         }
@@ -74,20 +69,22 @@ class Repository private constructor(
             if (data.isNotEmpty()) {
                 emit(Resource.Success(data))
             } else {
-                emit(Resource.Error(message = "Oops, Not found"))
+                emit(
+                    Resource.Error(
+                        message = R.string.text_message_not_found
+                    )
+                )
             }
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_from_server)
+                    message = R.string.text_message_error_from_server
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_internet_connection)
+                    message = R.string.text_message_error_internet_connection
                 )
             )
         }
@@ -100,20 +97,22 @@ class Repository private constructor(
             if (data.isNotEmpty()) {
                 emit(Resource.Success(data))
             } else {
-                emit(Resource.Error(message = "Oops, Not found"))
+                emit(
+                    Resource.Error(
+                        message = R.string.text_message_not_found
+                    )
+                )
             }
         } catch (e: HttpException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_from_server)
+                    message = R.string.text_message_error_from_server
                 )
             )
         } catch (e: IOException) {
             emit(
                 Resource.Error(
-                    message = Resources.getSystem()
-                        .getString(R.string.text_message_error_internet_connection)
+                    message = R.string.text_message_error_internet_connection
                 )
             )
         }
