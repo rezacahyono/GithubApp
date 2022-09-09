@@ -32,4 +32,14 @@
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="com.rchyn.githubapp.ui.fragments.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_nav_favorite_to_nav_detail"
+            app:destination="@id/nav_detail" />
+    </fragment>
+
 </navigation>

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rchyn.githubapp.GithubApplication
 import com.rchyn.githubapp.R
 import com.rchyn.githubapp.adapter.ListUserAdapter
 import com.rchyn.githubapp.databinding.FragmentFollowersBinding
@@ -28,9 +27,7 @@ class FollowersFragment : Fragment() {
     private lateinit var listUserAdapter: ListUserAdapter
 
     private val followersViewModel: FollowersViewModel by activityViewModels {
-        ViewModelFactory(
-            (activity?.application as GithubApplication).repository
-        )
+        ViewModelFactory.getInstance(requireContext())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

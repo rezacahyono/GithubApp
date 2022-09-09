@@ -27,7 +27,7 @@ class ListUserAdapter(
             ivAvatar.load(user.avatar) {
                 crossfade(true)
             }
-            tvUsername.text = user.login
+            tvUsername.text = user.username
             tvType.text = user.type
 
             root.setOnClickListener {

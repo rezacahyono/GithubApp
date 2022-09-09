@@ -1,23 +1,23 @@
-package com.rchyn.githubapp.data.remote
+package com.rchyn.githubapp.data.remote.retrofit
 
-import com.rchyn.githubapp.data.dto.Items
-import com.rchyn.githubapp.data.dto.ResponseUser
-import com.rchyn.githubapp.data.dto.ResponseUserDetail
+import com.rchyn.githubapp.data.remote.dto.Items
+import com.rchyn.githubapp.data.remote.dto.UserDetailResponse
+import com.rchyn.githubapp.data.remote.dto.UserResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface GithubApi {
 
+interface GithubApi {
     @GET("search/users")
     suspend fun searchUser(
         @Query("q") query: String
-    ): ResponseUser
+    ): UserResponse
 
     @GET("users/{username}")
     suspend fun getUserDetail(
         @Path("username") username: String
-    ): ResponseUserDetail
+    ): UserDetailResponse
 
     @GET("users/{username}/followers")
     suspend fun getUserFollower(

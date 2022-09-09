@@ -1,4 +1,4 @@
-package com.rchyn.githubapp.data.remote
+package com.rchyn.githubapp.data.remote.retrofit
 
 import com.rchyn.githubapp.BuildConfig
 import com.rchyn.githubapp.util.Constant.BASE_URL

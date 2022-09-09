@@ -214,15 +214,35 @@
                 <Button
                     android:id="@+id/btn_see_link"
                     style="@style/Widget.GithubApp.Button.OutlinedButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/padding_root_view"
+                    android:layout_marginStart="@dimen/padding_root_view"
+                    android:layout_marginEnd="@dimen/button_spread_margin"
                     android:layout_marginTop="@dimen/button_margin"
                     android:layout_marginBottom="@dimen/button_margin"
-                    android:text="@string/website_page"
+                    android:drawableEnd="@drawable/ic_external_link"
+                    android:drawableTint="?android:textColorPrimary"
+                    android:text="@string/website"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_favorite"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title_followers" />
+
+                <Button
+                    android:id="@+id/btn_favorite"
+                    style="@style/Widget.GithubApp.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_root_view"
+                    android:layout_marginStart="@dimen/button_spread_margin"
+                    android:layout_marginTop="@dimen/button_margin"
+                    android:layout_marginBottom="@dimen/button_margin"
+                    android:drawableEnd="@drawable/ic_outline_favorite_small"
+                    android:text="@string/favorite"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_see_link"
                     app:layout_constraintTop_toBottomOf="@id/tv_title_followers" />
 
 

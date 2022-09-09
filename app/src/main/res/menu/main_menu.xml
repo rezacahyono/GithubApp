@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/nav_favorite"
+        android:icon="@drawable/ic_favorite_medium"
+        android:title="@string/favorite"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings"

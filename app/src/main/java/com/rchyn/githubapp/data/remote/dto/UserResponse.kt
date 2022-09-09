@@ -1,9 +1,8 @@
-package com.rchyn.githubapp.data.dto
+package com.rchyn.githubapp.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
-import com.rchyn.githubapp.model.User
 
-data class ResponseUser(
+data class UserResponse(
 
     @SerializedName("total_count")
     val totalCount: Int,
@@ -28,12 +27,4 @@ data class Items(
 
     @SerializedName("id")
     val id: Int,
-) {
-    fun toUser() =
-        User(
-            id = id.toLong(),
-            login = login,
-            avatar = avatarUrl,
-            type = type
-        )
-}
+)

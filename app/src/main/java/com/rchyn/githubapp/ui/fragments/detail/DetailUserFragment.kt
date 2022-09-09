@@ -1,6 +1,7 @@
 package com.rchyn.githubapp.ui.fragments.detail
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.google.android.material.tabs.TabLayoutMediator
-import com.rchyn.githubapp.GithubApplication
 import com.rchyn.githubapp.R
 import com.rchyn.githubapp.databinding.FragmentDetailUserBinding
 import com.rchyn.githubapp.model.User
@@ -31,14 +31,10 @@ class DetailUserFragment : Fragment() {
     private val args: DetailUserFragmentArgs by navArgs()
 
     private val detailViewModel: DetailUserViewModel by viewModels {
-        ViewModelFactory(
-            (activity?.application as GithubApplication).repository
-        )
+        ViewModelFactory.getInstance(requireContext())
     }
     private val followersViewModel: FollowersViewModel by activityViewModels {
-        ViewModelFactory(
-            (activity?.application as GithubApplication).repository
-        )
+        ViewModelFactory.getInstance(requireContext())
     }
 
     override fun onCreateView(
@@ -67,23 +63,17 @@ class DetailUserFragment : Fragment() {
         }.attach()
 
         val user = args.user
-        detailViewModel.setUsername(user.login)
-        followersViewModel.setUsername(user.login)
+        detailViewModel.setUsername(user.username)
+        followersViewModel.setUsername(user.username)
 
-        detailViewModel.userDetail.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is Resource.Success -> {
-                    state.data?.let {
-                        setupDisplayDetail(it)
-                    }
+        detailViewModel.userDetail.observe(viewLifecycleOwner) { result ->
+            when {
+                result.isLoading -> binding.loadingBar.show()
+                result.user != null -> {
                     binding.loadingBar.hide()
+                    setupDisplayDetail(result.user)
                 }
-                is Resource.Loading -> {
-                    binding.loadingBar.show()
-                }
-                is Resource.Error -> {
-                    binding.loadingBar.hide()
-                }
+                result.isError -> binding.loadingBar.hide()
             }
         }
 
@@ -112,7 +102,7 @@ class DetailUserFragment : Fragment() {
                 crossfade(true)
             }
             tvName.text = user.name
-            tvUsername.text = user.login
+            tvUsername.text = user.username
             tvCompany.text = user.company.ifBlank {
                 tvCompany.hide()
                 ""
@@ -148,6 +138,19 @@ class DetailUserFragment : Fragment() {
             btnSeeLink.setOnClickListener {
                 startActivity(intentGithubPage)
             }
+
+            val icon: Drawable? = if (user.isFavorite){
+                ContextCompat.getDrawable(requireContext(),R.drawable.ic_favorite_small)
+            }else {
+                ContextCompat.getDrawable(requireContext(),R.drawable.ic_outline_favorite_small)
+            }
+
+            btnFavorite.apply {
+                setCompoundDrawablesWithIntrinsicBounds(null, null, icon, null)
+                setOnClickListener {
+                    detailViewModel.setFavorite(user)
+                }
+            }
         }
     }
 
@@ -156,6 +159,10 @@ class DetailUserFragment : Fragment() {
             when (item.itemId) {
                 R.id.nav_settings -> {
                     findNavController().navigate(R.id.nav_settings)
+                    true
+                }
+                R.id.nav_favorite -> {
+                    findNavController().navigate(R.id.nav_favorite)
                     true
                 }
                 else -> false

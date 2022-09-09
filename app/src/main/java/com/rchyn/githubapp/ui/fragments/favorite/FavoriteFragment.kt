@@ -1,48 +1,56 @@
-package com.rchyn.githubapp.ui.fragments.home
+package com.rchyn.githubapp.ui.fragments.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rchyn.githubapp.R
 import com.rchyn.githubapp.adapter.ListUserAdapter
-import com.rchyn.githubapp.databinding.FragmentHomeBinding
+import com.rchyn.githubapp.databinding.FragmentFavoriteBinding
 import com.rchyn.githubapp.model.User
 import com.rchyn.githubapp.ui.ViewModelFactory
 import com.rchyn.githubapp.util.hide
 import com.rchyn.githubapp.util.show
 
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding as FragmentHomeBinding
+
+class FavoriteFragment : Fragment() {
+    private var _binding: FragmentFavoriteBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var listUserAdapter: ListUserAdapter
 
-    private val homeViewModel: HomeViewModel by viewModels {
-        ViewModelFactory.getInstance(requireContext())
+    private val favoriteViewModel: FavoriteViewModel by viewModels {
+        ViewModelFactory.getInstance(requireActivity())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
+        binding.toolbarMain.apply {
+            title = getString(R.string.favorite)
+            navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_arrow_back)
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.toolbarMain.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
         listUserAdapter = ListUserAdapter { user ->
             navigateToDetail(user)
         }
 
-        homeViewModel.listUser.observe(viewLifecycleOwner) { result ->
+        favoriteViewModel.listUser.observe(viewLifecycleOwner) { result ->
             when {
                 result.isLoading -> {
                     binding.apply {
@@ -96,8 +104,6 @@ class HomeFragment : Fragment() {
 
         setupRecyclerUser()
 
-        setupSearchView()
-
         setupMenu()
     }
 
@@ -109,41 +115,23 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupSearchView() {
-        val searchView = binding.layoutToolbar.searchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (!query.isNullOrBlank()) {
-                    homeViewModel.setSearchQuery(query)
-                }
-                searchView.clearFocus()
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
-    }
-
     private fun setupMenu() {
-        binding.layoutToolbar.toolbarMain.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.nav_settings -> {
-                    findNavController().navigate(R.id.nav_settings)
-                    true
+        binding.toolbarMain.apply {
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.nav_settings -> {
+                        findNavController().navigate(R.id.nav_settings)
+                        true
+                    }
+                    else -> false
                 }
-                R.id.nav_favorite -> {
-                    findNavController().navigate(R.id.nav_favorite)
-                    true
-                }
-                else -> false
             }
+            menu.findItem(R.id.nav_favorite).isVisible = false
         }
     }
 
     private fun navigateToDetail(user: User) {
-        val action = HomeFragmentDirections.actionNavHomeToNavDetail(user)
+        val action = FavoriteFragmentDirections.actionNavFavoriteToNavDetail(user)
         findNavController().navigate(action)
     }
 

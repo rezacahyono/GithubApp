@@ -7,4 +7,6 @@ object Constant {
     const val DEFAULT = "system"
     const val LIGHT = "light"
     const val DARK = "dark"
+
+    const val GITHUB_DB = "github_db"
 }

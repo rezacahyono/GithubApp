@@ -16,6 +16,7 @@
     <dimen name="text_margin_image">16dp</dimen>
     <dimen name="text_about_padding">8dp</dimen>
     <dimen name="button_margin">16dp</dimen>
+    <dimen name="button_spread_margin">8dp</dimen>
 
     <dimen name="search_toolbar_margin">16dp</dimen>
 
