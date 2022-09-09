@@ -30,9 +30,6 @@ interface UserDao {
     @Update
     suspend fun updateUser(userEntity: UserEntity)
 
-    @Query("DELETE FROM userentity WHERE isFavorite = 0")
-    suspend fun deleteAllUser()
-
     @Query("SELECT EXISTS(SELECT * FROM userentity WHERE username = :username AND isFavorite = 1)")
     suspend fun isNewFavorite(username: String): Boolean
 }

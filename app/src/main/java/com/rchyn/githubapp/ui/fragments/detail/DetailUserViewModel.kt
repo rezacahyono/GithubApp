@@ -1,11 +1,17 @@
 package com.rchyn.githubapp.ui.fragments.detail
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.rchyn.githubapp.R
 import com.rchyn.githubapp.data.repository.UserRepository
 import com.rchyn.githubapp.model.User
 import com.rchyn.githubapp.util.Resource
 import com.rchyn.githubapp.util.toUserEntity
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 class DetailUserViewModel(
     private val repository: UserRepository
@@ -25,7 +31,11 @@ class DetailUserViewModel(
                         _userDetail.value = DetailUiState(isLoading = true)
                     }
                     is Resource.Error -> {
-                        _userDetail.value = DetailUiState(isError = true)
+                        if (result.throwable is HttpException) {
+                            _userDetail.value = DetailUiState(isError = R.string.text_message_error_from_server)
+                        } else if (result.throwable is IOException) {
+                            _userDetail.value = DetailUiState(isError = R.string.text_message_error_from_server)
+                        }
                     }
                 }
             }

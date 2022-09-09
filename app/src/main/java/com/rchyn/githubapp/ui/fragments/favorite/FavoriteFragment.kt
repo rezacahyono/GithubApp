@@ -20,7 +20,7 @@ import com.rchyn.githubapp.util.show
 
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding as FragmentFavoriteBinding
 
     private lateinit var listUserAdapter: ListUserAdapter
 

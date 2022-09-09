@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -14,8 +15,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.rchyn.githubapp.R
+import com.rchyn.githubapp.databinding.DialogStatusStateBinding
 import com.rchyn.githubapp.databinding.FragmentDetailUserBinding
 import com.rchyn.githubapp.model.User
 import com.rchyn.githubapp.ui.ViewModelFactory
@@ -26,7 +29,11 @@ import com.rchyn.githubapp.util.*
 
 class DetailUserFragment : Fragment() {
     private var _binding: FragmentDetailUserBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding as FragmentDetailUserBinding
+
+    private var _bindingDialog: DialogStatusStateBinding? = null
+    private val bindingDialog get() = _bindingDialog as DialogStatusStateBinding
+
 
     private val args: DetailUserFragmentArgs by navArgs()
 
@@ -73,7 +80,7 @@ class DetailUserFragment : Fragment() {
                     binding.loadingBar.hide()
                     setupDisplayDetail(result.user)
                 }
-                result.isError -> binding.loadingBar.hide()
+                result.isError != 0 -> setupDialogState(result.isError)
             }
         }
 
@@ -139,10 +146,10 @@ class DetailUserFragment : Fragment() {
                 startActivity(intentGithubPage)
             }
 
-            val icon: Drawable? = if (user.isFavorite){
-                ContextCompat.getDrawable(requireContext(),R.drawable.ic_favorite_small)
-            }else {
-                ContextCompat.getDrawable(requireContext(),R.drawable.ic_outline_favorite_small)
+            val icon: Drawable? = if (user.isFavorite) {
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_small)
+            } else {
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_outline_favorite_small)
             }
 
             btnFavorite.apply {
@@ -167,6 +174,22 @@ class DetailUserFragment : Fragment() {
                 }
                 else -> false
             }
+        }
+    }
+
+    private fun setupDialogState(@StringRes text: Int) {
+        var dialog: MaterialAlertDialogBuilder? = null
+        _bindingDialog = DialogStatusStateBinding.inflate(LayoutInflater.from(requireContext()))
+        bindingDialog.tvPlaceholder.text = getString(text)
+        if (dialog == null) {
+            dialog = MaterialAlertDialogBuilder(requireContext())
+                .setView(bindingDialog.root)
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.back)) { it, _ ->
+                    findNavController().navigateUp()
+                    it.dismiss()
+                }
+            dialog.show()
         }
     }
 

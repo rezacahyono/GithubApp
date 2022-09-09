@@ -14,7 +14,7 @@
         <item name="toolbarStyle">@style/Widget.GithubApp.Toolbar</item>
         <item name="appBarLayoutStyle">@style/Widget.GithubApp.Appbar</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.GithubApp.MaterialAlertDialog</item>
-        <item name="alertDialogTheme">@style/ThemeOverlay.GithubApp.MaterialAlertDialog</item>
+        <item name="alertDialogTheme">@style/ThemeOverlay.GithubApp.AlertDialog</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.SplashScreen">
@@ -89,9 +89,15 @@
         <item name="shapeAppearance">@style/ShapeAppearance.MaterialComponents.SmallComponent</item>
     </style>
 
-    <style name="ThemeOverlay.GithubApp.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+    <style name="ThemeOverlay.GithubApp.AlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="dialogCornerRadius">@dimen/dialog_corner_rounded</item>
         <item name="backgroundTint">@color/colorSurfaceInverse</item>
         <item name="android:background">@color/colorSurfaceInverse</item>
+    </style>
+
+    <style name="ThemeOverlay.GithubApp.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="backgroundTint">@color/colorSurfaceInverse</item>
+        <item name="android:background">@color/colorSurfaceInverse</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>
     </style>
 </resources>

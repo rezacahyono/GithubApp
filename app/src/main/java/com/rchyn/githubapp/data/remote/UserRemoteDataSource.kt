@@ -25,12 +25,12 @@ class UserRemoteDataSource private constructor(
     fun getUserFollowers(username: String): Flow<List<UserEntity>> = flow {
         val data = api.getUserFollower(username).map { it.toUserEntity() }
         emit(data)
-    }
+    }.flowOn(Dispatchers.IO)
 
     fun getUserFollowing(username: String): Flow<List<UserEntity>> = flow {
         val data = api.getUserFollowing(username).map { it.toUserEntity() }
         emit(data)
-    }
+    }.flowOn(Dispatchers.IO)
 
     companion object {
         @Volatile

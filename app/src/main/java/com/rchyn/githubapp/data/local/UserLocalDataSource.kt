@@ -48,10 +48,6 @@ class UserLocalDataSource private constructor(
         userDao.updateUser(userEntity)
     }
 
-    suspend fun deleteAllUser() {
-        userDao.deleteAllUser()
-    }
-
     suspend fun isNewFavorite(username: String): Boolean {
         return userDao.isNewFavorite(username)
     }
