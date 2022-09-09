@@ -12,6 +12,8 @@ buildscript {
         lifecycle_version = "2.6.0-alpha01"
         nav_version = "2.5.1"
         fragment_version ="1.5.2"
+        preference_version = "1.2.0"
+        room_version = "2.4.3"
     }
 
     dependencies {

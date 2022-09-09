@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.rchyn.githubapp.databinding.ItemRowUserBinding
@@ -29,7 +27,7 @@ class ListUserAdapter(
             ivAvatar.load(user.avatar) {
                 crossfade(true)
             }
-            tvUsername.text = user.login
+            tvUsername.text = user.username
             tvType.text = user.type
 
             root.setOnClickListener {

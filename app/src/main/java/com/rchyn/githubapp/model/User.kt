@@ -3,12 +3,11 @@ package com.rchyn.githubapp.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-
 @Parcelize
 data class User(
-    val id: Long = 0L,
+    val id: Int = 0,
     val url: String = "",
-    val login: String = "",
+    val username: String = "",
     val name: String = "",
     val type: String = "",
     val avatar: String = "",
@@ -19,5 +18,6 @@ data class User(
     val email: String = "",
     val followers: Int = 0,
     val following: Int = 0,
-    val repository: Int = 0
-): Parcelable
+    val repository: Int = 0,
+    val isFavorite: Boolean = false
+) : Parcelable
