@@ -64,7 +64,7 @@ class UserRepositoryImpl private constructor(
             saveFetchResult = { users ->
                 users.collectLatest {
                     val followers = it.map { user -> user.toFollowers(username) }
-                    userLocalDataSource.inserFollowers(followers)
+                    userLocalDataSource.insertFollowers(followers)
                     val userEntity = it.map { user ->
                         val isFavorite = userLocalDataSource.isNewFavorite(user.username)
                         user.copy(isFavorite = isFavorite)
@@ -92,7 +92,7 @@ class UserRepositoryImpl private constructor(
             saveFetchResult = { users ->
                 users.collectLatest {
                     val following = it.map { user -> user.toFollowing(username) }
-                    userLocalDataSource.inserFollowers(following)
+                    userLocalDataSource.insertFollowers(following)
                     val userEntity = it.map { user ->
                         val isFavorite = userLocalDataSource.isNewFavorite(user.username)
                         user.copy(isFavorite = isFavorite)

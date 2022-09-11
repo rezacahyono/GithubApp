@@ -40,7 +40,7 @@ class UserLocalDataSource private constructor(
         userDao.insertUsers(users)
     }
 
-    suspend fun inserFollowers(followers: List<FollowersEntity>) {
+    suspend fun insertFollowers(followers: List<FollowersEntity>) {
         userDao.insertFollowers(followers)
     }
 
