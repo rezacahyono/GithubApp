@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.rchyn.githubapp.databinding.ItemRowUserBinding
@@ -11,9 +13,8 @@ import com.rchyn.githubapp.model.User
 
 class ListUserAdapter(
     private val onClickItem: (user: User) -> Unit
-) : RecyclerView.Adapter<ListUserAdapter.ListUserViewHolder>() {
+) : ListAdapter<User, ListUserAdapter.ListUserViewHolder>(DiffCallback) {
     private lateinit var ctx: Context
-    private var listUser: ArrayList<User> = arrayListOf()
 
     inner class ListUserViewHolder(
         binding: ItemRowUserBinding
@@ -36,14 +37,6 @@ class ListUserAdapter(
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun submitList(users: List<User>?) {
-        if (users.isNullOrEmpty()) return
-        listUser.clear()
-        listUser.addAll(users)
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListUserViewHolder {
         ctx = parent.context
         val binding = ItemRowUserBinding.inflate(LayoutInflater.from(ctx), parent, false)
@@ -51,11 +44,18 @@ class ListUserAdapter(
     }
 
     override fun onBindViewHolder(holder: ListUserViewHolder, position: Int) {
-        val data = listUser[position]
+        val data = getItem(position)
         holder.bind(data)
     }
 
-    override fun getItemCount() = listUser.size
+    private companion object DiffCallback : DiffUtil.ItemCallback<User>() {
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem.id == newItem.id
+        }
 
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem == newItem
+        }
 
+    }
 }
